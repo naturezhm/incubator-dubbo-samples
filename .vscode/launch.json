@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ConsulConsumer",
+            "request": "launch",
+            "mainClass": "org.apache.dubbo.samples.consul.ConsulConsumer",
+            "projectName": "dubbo-samples-consul"
+        }
+    ]
+}

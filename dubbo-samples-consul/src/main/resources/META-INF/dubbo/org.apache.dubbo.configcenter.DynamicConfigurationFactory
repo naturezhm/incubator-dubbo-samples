@@ -1,0 +1,1 @@
+customConfig=org.apache.dubbo.samples.consul.config.CustomConsulDynamicConfigurationFactory

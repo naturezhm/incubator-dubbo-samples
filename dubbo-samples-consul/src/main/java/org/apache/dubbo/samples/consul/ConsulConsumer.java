@@ -17,17 +17,33 @@
 
 package org.apache.dubbo.samples.consul;
 
+import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.samples.consul.api.DemoService;
-
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+@ComponentScan("org.apache.dubbo.samples.consul")
 public class ConsulConsumer {
 
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/dubbo-demo-consumer.xml");
         context.start();
         DemoService demoService = (DemoService) context.getBean("demoService");
-        String hello = demoService.sayHello("consul");
+        String hello = demoService.sayHello("from client");
         System.out.println(hello);
+    }
+
+    @Configuration
+    static public class Config {
+
+        @Bean
+        public ApplicationConfig applicationConfig() {
+            ApplicationConfig applicationConfig = new ApplicationConfig();
+            applicationConfig.setQosPort(11111);
+            applicationConfig.setName("dubbo-demo-consumer");
+            return applicationConfig;
+        }
     }
 }
